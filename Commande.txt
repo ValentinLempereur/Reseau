@@ -2,15 +2,26 @@
 SI 128 = 0 + 128 = 128
 SI 64 = 0 + 128 + 64 = 192
 SI 32 = 0 + 128 + 64 + 32 = 224
-Ect....
+SI 16 = 0 + 128 + 64 + 32  + 16 = 240
+SI 8 = 0 + 128 + 64 + 32  + 16 + 8 = 248
+SI 4 = 0 + 128 + 64 + 32  + 16 + 8  + 4 = 252
+SI 2 = 0 + 128 + 64 + 32  + 16 + 8  + 4 + 2 = 254
+SI 1 = 0 + 128 + 64 + 32  + 16 + 8  + 4 + 2  + 1 = 255
+
 --------------Total--------------
 Voir les informations :
 enable => show running-config
+enable => show ip route
 
-Sauvegarder tout and tftp! :
+Empecher les crashes :
+conf t => no ip domain-lookup
+
+Sauvegarder tout :
 enable => copy running-config startup-config
-enable => copy running-config tftp
+enable => wr
 
+Sauvegarder tftp! ;
+enable => copy running-config tftp
 
 Renommer :
 conf t => hostname NouveauNom
@@ -29,6 +40,9 @@ conf t => line console 0 => passeword MotDePasse => login
 
 Line vty :
 conf t => line vty 0 4 => passeword MotDePasse => login
+
+Ip route statique :
+conf t => ip route 192.168.0.(0) 255.255.255.(0) 10.0.0.(0) || ip du sous-réseau ou on se dirige / masque du sous-reseau en question / ip du routeur ou on se dirige
 
 --------------Routeur--------------
 Mettre une ip : 
